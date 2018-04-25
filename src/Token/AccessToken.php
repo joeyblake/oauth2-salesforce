@@ -50,4 +50,16 @@ class AccessToken extends \League\OAuth2\Client\Token\AccessToken
             ? $result[0]
             : null;
     }
+
+    /**
+     * Update the refresh token stored in the Access Token.
+     * Salesforce does not return a refresh token when the original is refreshed.
+     * This allows updating the new access token with a persistent refresh token.
+     *
+     * @param string $refreshToken existing refresh token
+     */
+    public function updateRefreshToken( $refreshToken )
+    {
+        $this->refreshToken = $refreshToken;
+    }
 }

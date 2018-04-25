@@ -49,6 +49,9 @@ if ($existingAccessToken->hasExpired()) {
         'refresh_token' => $existingAccessToken->getRefreshToken()
     ]);
 
+    //Salesforce doesn't return a new refresh token with the response. Keep this one.
+    $newAccessToken->updateRefreshToken( $existingAccessToken->getRefreshToken() );
+
     // Purge old access token and store new access token to your data store.
 }
 ```
